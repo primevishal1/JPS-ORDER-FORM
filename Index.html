@@ -44,7 +44,7 @@ document.getElementById("orderForm").addEventListener("submit", function(e) {
     address: this.address.value
   };
 
-  fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+  fetch("https://script.google.com/macros/s/AKfycbxm_HqA3f5sCkTrzdcDUCbjXRTRYj4CV-KDWTDqFCsXZSOSEi7jDm-JSV7NhtdjDhc_Jw/exec", {
     method: "POST",
     body: JSON.stringify(formData)
   })
