@@ -1,20 +1,61 @@
-<form action="https://script.google.com/macros/s/AKfycbwLJb7w5Zh9GT28wJMk_wAPou_AjVJMW1QiVcnD2exJy32ndIne68gGNaHinCvZQapvkA/exec" method="POST">
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Form</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    input, textarea, button {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+    }
+    button {
+      background: black;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
 
-<input type="text" name="name" placeholder="Customer Name" required>
+<h2>Place Your Order</h2>
 
-<input type="tel" name="phone" placeholder="Phone Number" required>
-
-<textarea name="address" placeholder="Delivery Address" required></textarea>
-
-<select name="framesize" required>
-<option value="">Select Frame Size</option>
-<option>8x10</option>
-<option>12x18</option>
-<option>16x24</option>
-</select>
-
-<textarea name="message" placeholder="Message"></textarea>
-
-<button type="submit">Submit</button>
-
+<form id="orderForm">
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <input type="email" name="email" placeholder="Email">
+  <input type="text" name="product" placeholder="Product Name" required>
+  <input type="number" name="quantity" placeholder="Quantity" required>
+  <textarea name="address" placeholder="Delivery Address" required></textarea>
+  <button type="submit">Submit Order</button>
 </form>
+
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = {
+    name: this.name.value,
+    phone: this.phone.value,
+    email: this.email.value,
+    product: this.product.value,
+    quantity: this.quantity.value,
+    address: this.address.value
+  };
+
+  fetch("PASTE_YOUR_WEB_APP_URL_HERE", {
+    method: "POST",
+    body: JSON.stringify(formData)
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("Order submitted successfully!");
+    this.reset();
+  })
+  .catch(err => alert("Error submitting order"));
+});
+</script>
+
+</body>
+</html>
